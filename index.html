@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar Clock Countdown Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7x1z5l5e5c5e5e5e5e5e5e5e5e5e5e5e5e5e" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="date-setup">
+            <h2 class="setup-title">Set Target Date for Countdown</h2>
+            <input type="datetime-local" id="targetDate" name="targetDate" placeholder="Select Date and Time" required>
+            <button id="startButton">Start Countdown</button>
+        </div>
+        
+        <div class="daily-activities">
+            <h2 class="setup-title">Daily Activities Time (hours per day)</h2>
+            <div class="activities-form">
+                <div class="activity-input">
+                    <label for="sleepTime">Sleep:</label>
+                    <input type="number" id="sleepTime" min="0" max="24" step="0.5" value="8">
+                </div>
+                <div class="activity-input">
+                    <label for="choreTime">Chores:</label>
+                    <input type="number" id="choreTime" min="0" max="24" step="0.5" value="1">
+                </div>
+                <div class="activity-input">
+                    <label for="travelTime">Travel:</label>
+                    <input type="number" id="travelTime" min="0" max="24" step="0.5" value="1">
+                </div>
+                <div class="activity-input">
+                    <label for="workTime">Work/School:</label>
+                    <input type="number" id="workTime" min="0" max="24" step="0.5" value="8">
+                </div>
+                <div class="activity-input">
+                    <label for="miscTime">Miscellaneous:</label>
+                    <input type="number" id="miscTime" min="0" max="24" step="0.5" value="2">
+                </div>
+                <div class="total-daily-time">
+                    <span>Total daily committed hours: </span>
+                    <span id="totalDailyHours">20</span>
+                    <span> / 24</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="clock-container">
+                <div class="polar-clock">
+                    <div class="polar-numbers"></div>
+                    
+                    <!-- Arc backgrounds -->
+                    <div class="arc-background years-background"></div>
+                    <div class="arc-background months-background"></div>
+                    <div class="arc-background weeks-background"></div>
+                    <div class="arc-background days-background"></div>
+                    <div class="arc-background hours-background"></div>
+                    <div class="arc-background minutes-background"></div>
+                    <div class="arc-background seconds-background"></div>
+                    
+                    <!-- Progress arcs -->
+                    <div class="clock-arc years-arc">
+                        <div class="arc-background years-progress"></div>
+                    </div>
+                    <div class="clock-arc months-arc">
+                        <div class="arc-background months-progress"></div>
+                    </div>
+                    <div class="clock-arc weeks-arc">
+                        <div class="arc-background weeks-progress"></div>
+                    </div>
+                    <div class="clock-arc days-arc">
+                        <div class="arc-background days-progress"></div>
+                    </div>
+                    <div class="clock-arc hours-arc">
+                        <div class="arc-background hours-progress"></div>
+                    </div>
+                    <div class="clock-arc minutes-arc">
+                        <div class="arc-background minutes-progress"></div>
+                    </div>
+                    <div class="clock-arc seconds-arc">
+                        <div class="arc-background seconds-progress"></div>
+                    </div>
+                    
+                    <div class="time-display">
+                        <div class="country-code">CD</div>
+                        <div class="day-name">Monday</div>
+                        <div class="month-name">April</div>
+                        <div class="date-value">14</div>
+                        <div class="time-value">15:54:45</div>
+                        <div class="year-value">2025</div>
+                    </div>
+                    
+                    <div class="remaining-time">
+                        <div>Time Remaining</div>
+                        <div class="timer-value" id="timer-value">
+                            <div class="time-unit">
+                                <div class="unit-value" id="years-value">0</div>
+                                <div class="unit-label">Years</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="months-value">0</div>
+                                <div class="unit-label">Months</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="weeks-value">0</div>
+                                <div class="unit-label">Weeks</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="days-value">0</div>
+                                <div class="unit-label">Days</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="hours-value">0</div>
+                                <div class="unit-label">Hours</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="minutes-value">0</div>
+                                <div class="unit-label">Min</div>
+                            </div>
+                            <div class="time-unit">
+                                <div class="unit-value" id="seconds-value">0</div>
+                                <div class="unit-label">Sec</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-legend">
+                <div class="legend-title">Time Units</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color years-color"></div>
+                        <span>Years</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color months-color"></div>
+                        <span>Months</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color weeks-color"></div>
+                        <span>Weeks</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color days-color"></div>
+                        <span>Days</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color hours-color"></div>
+                        <span>Hours</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color minutes-color"></div>
+                        <span>Minutes</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color seconds-color"></div>
+                        <span>Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="countdown-info" id="countdown-info"></div>
+        
+        <div class="available-time-info">
+            <h3>Real Available Time</h3>
+            <div id="availableTimeInfo"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
