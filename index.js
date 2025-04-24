@@ -137,6 +137,19 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector(`.${className}`).style.clipPath = clipPath;
     }
     
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registered:', registration);
+            })
+            .catch(error => {
+              console.error('ServiceWorker registration failed:', error);
+            });
+        });
+      }
+      
+
     document.getElementById('startButton').addEventListener('click', function() {
         // Clear any existing interval
         if (countdownInterval) {
@@ -152,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetDate = new Date(targetDateInput);
         countdownInfoDiv.textContent = `Target: ${targetDate.toLocaleString()}`;
         
+          
         // Start the countdown
         updateCountdown();
         countdownInterval = setInterval(updateCountdown, 1000);
