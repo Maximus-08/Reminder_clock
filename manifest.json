@@ -1,7 +1,7 @@
 {
   "name": "Clock Countdown & Real Available Time Calculator",
   "short_name": "TimeCalc",
-  "start_url": "index.html",
+  "start_url": "/Reminder_clock/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#0a84ff",
@@ -15,6 +15,14 @@
       "src": "icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }
